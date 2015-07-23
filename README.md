@@ -4,9 +4,7 @@ This project aims to create a reliable geometry data set to use to map London Po
 ## Licensing and Data sources
 
 
-
-Data was obtained thanks to http://www.opendoorlogistics.com/data/
-
+Geometry data was obtained thanks to http://www.opendoorlogistics.com/data/
 
 * Contains Royal Mail data © Royal Mail copyright and database right 2015
 * Contains National Statistics data © Crown copyright and database right 2015.
@@ -17,3 +15,5 @@ This reconstructed dataset is also derived from:
 
 * GSHHG – A Global Self-consistent, Hierarchical, High-resolution Geography Database http://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html according to an LGPL version 3 licence https://www.gnu.org/licenses/lgpl.html.
 * The Humanitarian Information Unit (HIU) World Country Polygon Datasets (https://hiu.state.gov/data/).
+
+Postcode data was obtained thanks to https://github.com/Gibbs/UK-Postcodes/
