@@ -14,8 +14,9 @@ def select_london_postcodes():
     with open ('ukpostcodes.csv') as csv_file:
         reader = csv.DictReader(csv_file)
         output_list = []
+        london_areas = ['Greater London', 'Westminster','City of London']
         for row in reader:
-            if row['region'] == 'Greater London':
+            if row['region'] in london_areas:
                 output_list.append(row['postcode'])
     return output_list
 
@@ -34,6 +35,7 @@ def select_london_postcodes_geometry():
     uk_geometry = json_data['features']
     london_postcodes = select_london_postcodes()
 
+
     # for each feature in the features list access the name property
     # and compare it with the london_postcodes
     for item in range(0,len(uk_geometry)):
@@ -45,6 +47,7 @@ def select_london_postcodes_geometry():
         #normalise the postcode so to get only the area
         postcode_area = postcode[:-2]
         if postcode_area in london_postcodes:
+            pdb.set_trace()
             row_dict['parent'] = postcode_area
             row_dict['name'] = postcode
             geometry = feature['geometry']
@@ -65,7 +68,7 @@ def create_lon_postcodes_geometry(geometry):
     Receives a list of geometry data containing dicts of latitude and longitude
     Creates a csv for easy reference and mapping
     """
-    with open('lon_postcodes_geometry.csv', 'w') as csvfile:
+    with open('london_postcodes.csv', 'w') as csvfile:
         fieldnames = ['parent','name', 'lons', 'lats']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
         writer.writeheader()
