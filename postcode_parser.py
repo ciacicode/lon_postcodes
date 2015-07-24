@@ -47,7 +47,7 @@ def select_london_postcodes_geometry():
         #normalise the postcode so to get only the area
         postcode_area = postcode[:-2]
         if postcode_area in london_postcodes:
-            pdb.set_trace()
+            print postcode
             row_dict['parent'] = postcode_area
             row_dict['name'] = postcode
             geometry = feature['geometry']
