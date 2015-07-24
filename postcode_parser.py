@@ -1,7 +1,10 @@
 __author__ = 'ciacicode'
-import json
 import csv
+import json
 import pdb
+import re
+
+WESTMINSTER_CODE_REGEX = re.compile('^(?P<code>W1)[^[0-9]]')
 
 # The postcode_parser contains a set of functions built with the goal of creating a csv containing
 # geometry data for all London postcodes
@@ -45,10 +48,16 @@ def select_london_postcodes_geometry():
         postcode = str(postcode[0])
 
         #normalise the postcode so to get only the area
-        postcode_area = postcode[:-2]
+        complete_postcode_area = postcode.split()[0]
+        postcode_area = complete_postcode_area
+
+        if WESTMINSTER_CODE_REGEX.match(postcode_area):
+            postcode_area = WESTMINSTER_CODE_REGEX.sub(
+                '\g<code>', postcode_area)
+
         if postcode_area in london_postcodes:
-            print postcode
-            row_dict['parent'] = postcode_area
+            print complete_postcode_area
+            row_dict['parent'] = complete_postcode_area
             row_dict['name'] = postcode
             geometry = feature['geometry']
             coordinates = geometry['coordinates'][0][0]
